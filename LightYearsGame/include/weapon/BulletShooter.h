@@ -3,9 +3,9 @@
 #include "weapon/Shooter.h"
 
 namespace ly{
-    class BulletShooter: public Shooter{
+    class  BulletShooter: public Shooter{
     public:
-        BulletShooter(Actor* owner, float cooldownTime = 5.f);
+        BulletShooter(Actor* owner, float cooldownTime = 1.f);
         virtual bool IsOnCooldown() const override;
     private:
         virtual void ShootImplt() override;

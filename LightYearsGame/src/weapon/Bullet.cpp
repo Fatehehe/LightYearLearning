@@ -24,10 +24,13 @@ namespace ly{
     {
         Actor::Tick(deltaTime);
         Move(deltaTime);
+        if(IsActorOutOfWindowBound()){
+            Destroy();
+        }
     }
 
     void Bullet:: Move(float deltaTime)
     {
-        AddActorLocationOffset(GetActorForwardDirection() * mSpeed * deltaTime);
+        AddActorLocationOffset(GetActorRightDirection() * -mSpeed * deltaTime);
     }
 }

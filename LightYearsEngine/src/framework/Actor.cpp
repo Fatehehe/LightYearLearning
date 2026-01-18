@@ -62,43 +62,48 @@ namespace ly{
         window.draw(mSprite);
     }
 
-    void Actor::SetActorLocation(const sf::Vector2f& newLoc){
-        mSprite.setPosition(newLoc);
-    }
+    void Actor::SetActorLocation(const sf::Vector2f& newLoc)
+	{
+		mSprite.setPosition(newLoc);
+	}
 
-    void Actor::SetActorRotation(const float newRot)
-    {
-        mSprite.setRotation(newRot);
-    }
+	void Actor::SetActorRotation(float newRot)
+	{
+		mSprite.setRotation(newRot);
+	}
+	
+	void Actor::AddActorLocationOffset(const sf::Vector2f& offsetAmt)
+	{
+		SetActorLocation(GetActorLocation() + offsetAmt);
+	}
+	
+	void Actor::AddActorRotationOffset(float offsetAmt)
+	{
+		SetActorRotation(GetActorRotation() + offsetAmt);
+	}
 
-    void Actor::AddActorLocationOffset(const sf::Vector2f &offsetAmt)
-    {
-        SetActorLocation(GetActorLocation() + offsetAmt);
-    }
+	sf::Vector2f Actor::GetActorLocation() const
+	{
+		return mSprite.getPosition();
+	}
+	
+	float Actor::GetActorRotation() const
+	{
+		return mSprite.getRotation();
+	}
 
-    void Actor::AddActorRotationOffset(const float offsetAmt)
-    {
-        SetActorRotation(GetActorRotation() + offsetAmt);
-    }
+	sf::Vector2f Actor::GetActorForwardDirection() const
+	{
+		return RotationToVector(GetActorRotation());
+	}
 
-    sf::Vector2f Actor::GetActorLocation() const
-    {
-        return mSprite.getPosition();
-    }
+	sf::Vector2f Actor::GetActorRightDirection() const
+	{
+		return RotationToVector(GetActorRotation() + 90.f);
+	}
 
-    float Actor::GetActorRotation() const
-    {
-        return mSprite.getRotation();
-    }
-
-    sf::Vector2f Actor::GetActorForwardDirection() const
-    {
-        return RotationToVector(GetActorRotation());
-    }
-
-    sf::Vector2f Actor::GetActorRightDirection() const
-    {
-        return RotationToVector(GetActorRotation() + 90.f);
+    sf::FloatRect Actor::GetActorGlobalBounds() const {
+        return mSprite.getGlobalBounds();
     }
 
     sf::Vector2u Actor::GetWindowSize() const
@@ -109,5 +114,33 @@ namespace ly{
     {  
         sf::FloatRect bound = mSprite.getGlobalBounds();
         mSprite.setOrigin(bound.width/2.f, bound.height/2.f);
+    }
+
+    bool Actor::IsActorOutOfWindowBound() const {
+        float windowWidth = GetWorld()->GetWindowSize().x;
+        float windowHeight = GetWorld()->GetWindowSize().y;
+
+        float width = GetActorGlobalBounds().width;
+        float height = GetActorGlobalBounds().height;
+
+        sf::Vector2f actorPos = GetActorLocation();
+
+        if(actorPos.x < -width){
+            return true;
+        }
+
+        if(actorPos.x > windowWidth + width){
+            return true;
+        }
+
+        if(actorPos.y <-height){
+            return true;
+        }
+        
+        if(actorPos.y > windowHeight + height){
+            return true;
+        }
+
+        return false;
     }
 }

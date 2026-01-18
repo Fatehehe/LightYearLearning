@@ -9,7 +9,7 @@ namespace ly{
         : Spaceship{owningWorld, path},
         mMoveInput{},
         mSpeed{2.f},
-        mShooter{new BulletShooter{this}}
+        mShooter{new BulletShooter{this, .1f}}
     {
 
     }
