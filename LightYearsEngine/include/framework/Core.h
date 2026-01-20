@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <memory>
 #include <map>
+#include <unordered_map>
+#include <unordered_set>
 
 namespace ly
 {
@@ -12,7 +14,7 @@ using unique = std::unique_ptr<T>;
 template<typename T>
 using shared = std::shared_ptr<T>;
 
-template<typename T>
+template<typename T> 
 using weak = std::weak_ptr<T>;
 
 template<typename T>
@@ -23,6 +25,9 @@ using Map = std::map<Key, Value, Pr>;
 
 template<typename Key, typename Value, typename Hasher = std::hash<Key>>
 using Dictionary = std::unordered_map<Key, Value, Hasher>;
+
+template<typename T>
+using Set = std::unordered_set<T>;
 
 // a macro
 #define LOG(M, ...) printf(M "\n", ##__VA_ARGS__)
