@@ -1,4 +1,5 @@
 #pragma once
+#include "framework/Delegate.h"
 
 namespace ly{
     class HealthComponent{
@@ -7,6 +8,11 @@ namespace ly{
         void ChangeHealth(float amt);
         float GetHealth() const {return mHealth;}
         float GetMaxHealth() const {return mMaxHealth;}
+
+        Delegate<float, float, float> onHealthChanged;
+        Delegate<float, float, float> onTakenDamage;
+        Delegate<> onHealthEmpty;
+
     private:
         void TakenDamage(float amt);
         void HealthEmpty();

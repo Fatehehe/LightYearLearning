@@ -7,7 +7,7 @@ namespace ly{
     public:
         BulletShooter(Actor* owner, float cooldownTime = 1.f);
         virtual bool IsOnCooldown() const override;
-    private:
+    private: 
         virtual void ShootImplt() override;
         sf::Clock mCooldownClock;
         float mCooldownTime;    

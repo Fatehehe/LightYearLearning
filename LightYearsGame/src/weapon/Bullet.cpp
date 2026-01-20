@@ -7,7 +7,7 @@ namespace ly{
         mSpeed{speed},
         mDamage{damage}
     {
-        
+        SetTeamID(owner->GetTeamID());
     }
 
     void Bullet::SetSpeed(float newSpeed)
@@ -32,6 +32,13 @@ namespace ly{
     void Bullet::BeginPlay(){
         Actor::BeginPlay();
         SetEnablePhysics(true);
+    }
+
+    void Bullet::OnActorBeginOverlap(Actor* otherActor){
+        if(IsOtherHostile(otherActor)){
+            otherActor->ApplyDamage(GetDamage());
+            Destroy();
+        }
     }
 
     void Bullet:: Move(float deltaTime)

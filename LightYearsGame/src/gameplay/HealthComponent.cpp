@@ -29,24 +29,29 @@ namespace ly
             if(mHealth <= 0.f){
                 HealthEmpty();
             }
-        }else{
-            HealthRegen(amt);
         }
+        // else{
+        //     HealthRegen(amt);
+        // }
+
+        onHealthChanged.Broadcast(amt, mHealth, mMaxHealth);
     }
 
     void HealthComponent::TakenDamage(float amt)
     {
-        LOG("Taken Damage: %f, now health is %f/%f", amt, mHealth, mMaxHealth);
+        onTakenDamage.Broadcast(amt, mHealth, mMaxHealth);
+        // LOG("Taken Damage: %f, now health is %f/%f", amt, mHealth, mMaxHealth);
     }
 
     void HealthComponent::HealthEmpty()
     {
-        LOG("Dead");
+        onHealthEmpty.Broadcast();
+        // LOG("Dead");
     }
 
-    void HealthComponent::HealthRegen(float amt)
-    {
-        LOG("Taken Regen: %f, now health is %f/%f", amt, mHealth, mMaxHealth);
-    }
+    // void HealthComponent::HealthRegen(float amt)
+    // {
+    //     LOG("Taken Regen: %f, now health is %f/%f", amt, mHealth, mMaxHealth);
+    // }
 } // namespace ly
 
