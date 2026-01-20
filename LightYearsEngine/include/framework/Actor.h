@@ -3,6 +3,8 @@
 #include "framework/Core.h"
 #include "framework/Object.h"
 
+class b2Body;
+
 namespace ly{
     class World;
     class Actor: public Object
@@ -34,12 +36,25 @@ namespace ly{
 
         bool IsActorOutOfWindowBound() const;
 
+        void SetEnablePhysics(bool enable);
+
+        virtual void OnActorBeginOverlap(Actor* otherActor);
+        virtual void OnActorEndOverlap(Actor* otherActor);
+
     private:
+        void InitializePhysics();
+        void UninitializePhysics();
         void CenterPivot();
+
+        void UpdatePhysicsBodyTransform();
+
         World* mOwningWorld;
         bool mBegunPlay;
 
         sf::Sprite mSprite;
         shared<sf::Texture> mTexture;
+
+        b2Body* mPhysicBody;
+        bool mPhysicsEnabled;
     };
 }

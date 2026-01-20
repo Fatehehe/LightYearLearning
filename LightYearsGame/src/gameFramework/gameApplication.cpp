@@ -25,6 +25,10 @@ namespace ly
         testPlayerSpaceship.lock()->SetActorRotation(0.f);
         // testPlayerSpaceship.lock()->SetVelocity(sf::Vector2f{0.f, -2.f});
         // counter = 0; 
+
+        weak<Spaceship> testSpaceship = newWorld.lock()->SpawnActor<Spaceship>();
+        testSpaceship.lock()->SetTexture("/SpaceShooterRedux/PNG/playerShip1_blue.png");
+        testSpaceship.lock()->SetActorLocation(sf::Vector2f(100.f, 50.f));
     }   
 
     void GameApplication::Tick(float deltatime)
