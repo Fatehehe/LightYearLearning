@@ -4,6 +4,7 @@
 #include "player/PlayerSpaceship.h"
 #include "framework/AssetManager.h"
 #include "Enemy/Vanguard.h"
+#include "framework/TimerManager.h"
 
 namespace ly{
     GameLevelOne::GameLevelOne(Application* owningApp)
@@ -15,6 +16,15 @@ namespace ly{
 
         weak<Vanguard> testSpaceship = SpawnActor<Vanguard>();
         testSpaceship.lock()->SetActorLocation(sf::Vector2f(100.f, 50.f));
+    }
 
+    void GameLevelOne::BeginPlay()
+    {
+        TimerManager::Get().SetTimer(GetWeakRef(), &GameLevelOne::TimerCallback_Test, 5.f);
+        
+    }
+    
+    void GameLevelOne::TimerCallback_Test()
+    {
     }
 }
