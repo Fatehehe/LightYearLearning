@@ -1,0 +1,14 @@
+#pragma once
+#include "Enemy/EnemySpaceship.h"
+
+namespace ly{
+    class BulletShooter;
+    class Vanguard: public EnemySpaceship{
+    public:
+        Vanguard(World* world, const std::string& texturePath = "SpaceShooterRedux/PNG/Enemies/enemyBlue3.png", const sf::Vector2f velocity = {0.f, 2.f});
+        virtual void Tick(float deltatime) override;
+    private:
+        virtual void Shoot() override;
+        unique<BulletShooter> mShooter;
+    };
+}
