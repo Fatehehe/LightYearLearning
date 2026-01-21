@@ -32,7 +32,8 @@ namespace ly{
 
         sf::Vector2u GetWindowSize() const;
 
-        World* GetWorld() const {return mOwningWorld;}
+        const World* GetWorld() const {return mOwningWorld;}
+        World* GetWorld() {return mOwningWorld;}
 
         bool IsActorOutOfWindowBound() const;
 
@@ -49,6 +50,9 @@ namespace ly{
         bool IsOtherHostile(Actor* other) const;
 
         virtual void ApplyDamage(float amt);
+
+        sf::Sprite& GetSprite() { return mSprite; }
+		const sf::Sprite& GetSprite() const { return mSprite; }
 
     private:
         void InitializePhysics();
