@@ -32,6 +32,7 @@ namespace ly{
         mIsExpired = true;
     }
 
+    unsigned int TimerManager::timerIndexCounter = 0;
     unique<TimerManager> TimerManager::timerManager{nullptr};
 
     TimerManager::TimerManager()
@@ -48,8 +49,21 @@ namespace ly{
     }
 
     void TimerManager::UpdateTimer(float deltaTime){
-        for(Timer& timer : mTimers){
-            timer.TickTime(deltaTime);
+        for(auto iter = mTimers.begin(); iter != mTimers.end();){
+            if(iter->second.Expired()){
+                iter = mTimers.erase(iter);
+            }else{
+                iter->second.TickTime(deltaTime);
+                ++iter;
+            }
         }
     }
+
+    void TimerManager::ClearTimer(unsigned int timerIndex){
+        auto iter = mTimers.find(timerIndex);
+        if(iter != mTimers.end()){
+            iter->second.SetExpired();
+        }
+    }
+
 }
