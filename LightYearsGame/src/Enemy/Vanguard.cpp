@@ -1,5 +1,5 @@
 #include "Enemy/Vanguard.h"
-#include "weapon/BulletShooter.h"
+// #include "weapon/BulletShooter.h"
 
 namespace ly{
     Vanguard::Vanguard(World *world, const std::string &texturePath, const sf::Vector2f velocity)

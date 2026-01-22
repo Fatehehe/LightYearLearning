@@ -1,11 +1,12 @@
 #pragma once
 #include "Enemy/EnemySpaceship.h"
+#include "weapon/BulletShooter.h"
 
 namespace ly{
-    class BulletShooter;
+    // class BulletShooter;
     class Vanguard: public EnemySpaceship{
     public:
-        Vanguard(World* world, const std::string& texturePath = "SpaceShooterRedux/PNG/Enemies/enemyBlue3.png", const sf::Vector2f velocity = {0.f, 2.f});
+        Vanguard(World* world, const std::string& texturePath = "SpaceShooterRedux/PNG/Enemies/enemyBlue3.png", const sf::Vector2f velocity = {0.f, 1.f});
         virtual void Tick(float deltatime) override;
     private:
         virtual void Shoot() override;

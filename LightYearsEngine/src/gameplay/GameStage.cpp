@@ -14,7 +14,7 @@ namespace ly
 
     void GameStage::TickStage(float deltaTime)
     {
-        LOG("Stage ticking");
+        // LOG("Stage ticking");
     }
 
     void GameStage::FinishStage()
