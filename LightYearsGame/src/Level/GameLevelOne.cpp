@@ -7,6 +7,7 @@
 #include "gameplay/GameStage.h"
 #include "framework/TimerManager.h"
 #include "Enemy/VanguardStage.h"
+#include "Enemy/TwinBladeStage.h"
 
 namespace ly{
     GameLevelOne::GameLevelOne(Application* owningApp)
@@ -23,6 +24,7 @@ namespace ly{
     }
 
     void GameLevelOne::InitGameStages(){
+        AddStage(shared<TwinBladeStage>{new TwinBladeStage{this}});
         AddStage(shared<VanguardStage>{new VanguardStage{this}});
     }
 }
