@@ -6,8 +6,8 @@
 namespace ly{
     TwinBladeStage::TwinBladeStage(World *world)
     : GameStage{world},
-    mSpawnInterval{1.5f},
-    mSpawnDistanceToCenter{100.f},
+    mSpawnInterval{200.f},
+    mSpawnDistanceToCenter{150.f},
     mLeftSpawnLoc{world->GetWindowSize().x / 2.f - mSpawnDistanceToCenter, -100.f},
     mRightSpawnLoc{world->GetWindowSize().x / 2.f+ mSpawnDistanceToCenter, -100.f},
     mSpawnLoc{mLeftSpawnLoc},
