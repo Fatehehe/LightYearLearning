@@ -1,5 +1,4 @@
 #include "Enemy/Hexagon.h"
-#include "weapon/BulletShooter.h"
 namespace ly
 {
 	Hexagon::Hexagon(World* owingWorld, const std::string& texturePath, const sf::Vector2f& velocity)
