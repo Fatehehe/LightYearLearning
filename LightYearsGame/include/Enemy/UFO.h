@@ -1,5 +1,6 @@
 #pragma once
 
+#include "weapon/BulletShooter.h"
 #include "Enemy/EnemySpaceship.h"
 
 namespace ly
