@@ -5,6 +5,7 @@
 #include "player/PlayerSpaceship.h"
 #include "framework/AssetManager.h"
 #include "Enemy/Vanguard.h"
+#include "Enemy/UFO.h"
 #include "gameplay/GameStage.h"
 #include "framework/TimerManager.h"
 #include "Enemy/VanguardStage.h"
@@ -22,13 +23,17 @@ namespace ly{
 
     void GameLevelOne::BeginPlay()
     {
-        
+        weak<UFO> newUFO_test = SpawnActor<UFO>(sf::Vector2f{0.f,0.f});
+        newUFO_test.lock()->SetActorLocation({GetWindowSize().x/2.f, GetWindowSize().y/2.f});
     }
 
     void GameLevelOne::InitGameStages(){
+        AddStage(shared<WaitStage>{new WaitStage{this, 20.f}});
         AddStage(shared<HexagonStage>{new HexagonStage{this}});
+
         AddStage(shared<WaitStage>{new WaitStage{this, 20.f}});
         AddStage(shared<VanguardStage>{new VanguardStage{this}});
+
         AddStage(shared<WaitStage>{new WaitStage{this, 20.f}});
         AddStage(shared<TwinBladeStage>{new TwinBladeStage{this}});
     }
